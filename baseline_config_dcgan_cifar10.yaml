@@ -1,0 +1,22 @@
+experiment_name: baseline_dcgan_cifar10
+
+model: dcgan
+dataset: cifar10
+
+seed: 1
+
+metrics:
+  - fid
+  - kid
+  - inception_score
+  - precision
+  - recall
+  - density
+  - coverage
+
+num_real_samples: null
+num_generated_samples: null
+
+perturbation: none
+
+output_directory: results/
