@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "feature_space": "inception_v3",
+    "paired_samples": 1280,
+    "feature_batch_size": 64,
+    "fid_max_cov_dim": 512,
+    "bootstrap_samples": 100,
+    "requested_bootstrap_samples": 100,
+    "bootstrap_seed": 10,
+    "bootstrap_alpha": 0.05,
+    "bootstrap_policy": "baseline_and_sample_size_only",
+    "pr_k": 5,
+    "dc_k": 5,
+    "is_splits": 10,
+    "bootstrap_errors": {}
+  },
+  "fid": {
+    "value": 20.418153942185274,
+    "ci": {
+      "method": "subsample_percentile_without_replacement",
+      "alpha": 0.05,
+      "low": 24.876372997753407,
+      "high": 25.547842709419918,
+      "bootstrap_samples": 100
+    }
+  },
+  "kid": {
+    "mean": 0.0002325916290283203,
+    "std": 0.00010116784031976404,
+    "ci": {
+      "method": "subsample_percentile_without_replacement",
+      "alpha": 0.05,
+      "low": 7.188659906387329e-05,
+      "high": 0.0004796081185340881,
+      "bootstrap_samples": 100
+    }
+  },
+  "is": {
+    "mean": 8.414611358075032,
+    "std": 0.5385586696401528,
+    "ci": {
+      "method": "subsample_percentile_without_replacement",
+      "alpha": 0.05,
+      "low": 7.908102245588769,
+      "high": 8.666981934741031,
+      "bootstrap_samples": 100
+    }
+  },
+  "precision_recall": {
+    "precision": {
+      "value": 0.80546875,
+      "ci": {
+        "method": "subsample_percentile_without_replacement",
+        "alpha": 0.05,
+        "low": 0.790966796875,
+        "high": 0.8178955078125,
+        "bootstrap_samples": 100
+      }
+    },
+    "recall": {
+      "value": 0.75625,
+      "ci": {
+        "method": "subsample_percentile_without_replacement",
+        "alpha": 0.05,
+        "low": 0.7465576171875,
+        "high": 0.783203125,
+        "bootstrap_samples": 100
+      }
+    }
+  },
+  "density_coverage": {
+    "density": {
+      "value": 1.019375,
+      "ci": {
+        "method": "subsample_percentile_without_replacement",
+        "alpha": 0.05,
+        "low": 0.9680810546875,
+        "high": 1.0759033203125001,
+        "bootstrap_samples": 100
+      }
+    },
+    "coverage": {
+      "value": 0.97109375,
+      "ci": {
+        "method": "subsample_percentile_without_replacement",
+        "alpha": 0.05,
+        "low": 0.9619140625,
+        "high": 0.9819580078125,
+        "bootstrap_samples": 100
+      }
+    }
+  }
+}

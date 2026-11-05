@@ -42,7 +42,7 @@ PROFILE = "test"  # Which pipeline profile to run when CUSTOM_STEPS is empty.
 
 # optional custom ordered steps. If non-empty, this overrides PROFILE.
 # example: ["prep_mnist_cifar10", "train_dcgan_cifar10", "smoke_models"]
-CUSTOM_STEPS = ["test_dcgan_cifar10"]  # Exact step list override; non-empty ignores PROFILE.
+CUSTOM_STEPS = ["test_stylegan2_cifar10"]  # Exact step list override; non-empty ignores PROFILE.
 
 
 # execution behavior flags:
@@ -223,6 +223,7 @@ TEST_STEP_METADATA: dict[str, tuple[str, str, str]] = {
     "test_studiogan_cifar10": ("studiogan", "cifar10", "studiogan_cifar10_test"),
     "test_ddpm_cifar10": ("ddpm", "cifar10", "ddpm_cifar10_test"),
     "test_stylegan2_celeba": ("stylegan2", "celeba", "stylegan2_celeba_test"),
+    "test_stylegan2_cifar10": ("stylegan2", "cifar10", "stylegan2_cifar10_test"),
 }
 
 DATASET_SUBDIRS: dict[str, str] = {

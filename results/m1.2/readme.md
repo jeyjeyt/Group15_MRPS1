@@ -34,4 +34,32 @@ Owner: Jessica
 
 ## Part 2: StyleGAN2 on CIFAR-10
 
+**Setup**
+- Model: NVIDIA StyleGAN2-ADA, class-conditional CIFAR-10 checkpoint (`cifar10.pkl`), staged in `checkpoints/StyleGAN/CIFAR10/`
+- New script: `Scripts/test_stylegan2_cifar10.py` (copy of Group07's CelebA script, adapted)
+  - class-balanced generation: 128 images per class (1280 total), shuffled
+  - truncation_psi = 1.0 (no truncation, standard for FID)
+  - metrics against CIFAR-10 at 32x32
+- New pipeline step: `test_stylegan2_cifar10`
+- Same evaluation settings as DCGAN (1280 samples, generation seed 1, reference seed 10, Inception-v3, 100 subsamples of 80%)
+- Raw output: `stylegan2_cifar10_seed1_metrics.json`
 
+**Results**
+
+| Metric                 | DCGAN (ours)| StyleGAN2 (ours)| StyleGAN2 95% interval | DDPM (Group07, reference) |
+|-------------------------------------------------------------------------|
+| FID (lower is better) | 53.02 | 20.42 | 24.88 – 25.55 | 28.34 |
+| KID (lower is better) | 0.0209 | 0.00023 | 0.00007 – 0.00048 | 0.006 |
+| IS (higher is better) | 4.85 | 8.41 | 7.91 – 8.67 | 7.17 |
+| Precision (higher is better) | 0.723 | 0.805 | 0.791 – 0.818 | 0.800 |
+| Recall (higher is better) | 0.507 | 0.756 | 0.747 – 0.783 | 0.719 |
+| Density (higher is better) | 0.670 | 1.019 | 0.968 – 1.076 | 0.971 |
+| Coverage (higher is better) | 0.502 | 0.971 | 0.962 – 0.982 | 0.877 |
+
+**Conclusion:** StyleGAN2 is the best of the three models on all seven metrics, for both fidelity (Precision, Density) and diversity (Recall, Coverage). The ranking StyleGAN2 > DDPM > DCGAN is consistent with the literature.
+
+**Notes**
+- As for DCGAN, the full-sample FID (20.42) lies outside its subsampling interval, due to the small-sample bias of FID (relevant for M2).
+- NVIDIA reports FID 2.42 for this checkpoint using 50,000 samples; our 20.42 uses 1,280 samples. This large gap illustrates how strongly FID depends on sample size.
+- KID is close to zero (0.00023), so its interval is wider than the value itself. This matters for any score that normalises by the baseline value (e.g. RWFAS reliability), relevant for M4.
+- NVIDIA's custom CUDA kernels failed to compile on the cluster; the code falls back to the reference implementation (slower, same results).

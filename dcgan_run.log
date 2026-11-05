@@ -1,0 +1,29 @@
+nohup: ignoring input
+Calling pipeline with command:
+/home/i6436881/venv-mrp/bin/python /home/i6436881/Group15_MRPS1/Tests/run_operations_pipeline.py --profile test --data-root data --checkpoints-root checkpoints --outputs-root outputs --image-size 32 --dcgan-epochs 1 --dcgan-batch-size 64 --wgangp-epochs 1 --wgangp-batch-size 64 --test-num-samples 1280 --test-batch-size 64 --generation-seed 1 --reference-seed 10 --metrics-samples 1280 --metrics-feature-space inception_v3 --metrics-feature-batch-size 64 --metrics-feature-device cuda --metrics-bootstrap-samples 100 --metrics-bootstrap-seed 10 --metrics-bootstrap-alpha 0.05 --subset-seed 10 --subset-strategy random --steps test_dcgan_cifar10 --dcgan-test-netg Models/saved_weights/netG_best.pth --eval-metrics --cuda --verbose --run
+[test_dcgan] deterministic seed set to 1
+[eval_cache] reusing generated samples 8aa5f25e09d8a493b44497494c90e92348fe79bf
+[eval_cache] reusing real reference bundle dea01da1fc9033c0ee4241f2f8d9304e950efbb3
+Saved 1280 samples to /home/i6436881/Group15_MRPS1/outputs/dcgan_cifar10_test/generated_samples.png
+[eval_cache] reusing metric features dea01da1fc9033c0ee4241f2f8d9304e950efbb3
+[eval_cache] reusing metric features 8aa5f25e09d8a493b44497494c90e92348fe79bf
+[metrics] starting metric computation from cached features
+[metrics] feature_space=inception_v3 paired_count=1280 feature_batch_size=64 feature_device=cuda
+[metrics] base metric estimates computed
+[metrics] bootstrapping FID with B=100
+[metrics] bootstrapping KID mean with B=100
+[metrics] bootstrapping IS mean with B=100
+[metrics] bootstrapping precision/recall with B=100
+[metrics] bootstrapping density/coverage with B=100
+[metrics] metric computation completed
+[eval_cache] wrote metrics to /home/i6436881/Group15_MRPS1/outputs/dcgan_cifar10_test/metrics_report.json
+Metric summary keys: ['metadata', 'fid', 'kid', 'is', 'precision_recall', 'density_coverage']
+[eval_cache] wrote cache report to /home/i6436881/Group15_MRPS1/outputs/dcgan_cifar10_test/cache_report.json
+Repo root: /home/i6436881/Group15_MRPS1
+Mode: EXECUTE
+Planned steps (1): test_dcgan_cifar10
+
+[test_dcgan_cifar10]
+/home/i6436881/venv-mrp/bin/python /home/i6436881/Group15_MRPS1/Scripts/test_dcgan.py --netG Models/saved_weights/netG_best.pth --num-samples 1280 --batch-size 64 --image-size 32 --channels 3 --out-dir outputs/dcgan_cifar10_test --generation-seed 1 --reference-seed 10 --eval-metrics --metrics-dataset cifar10 --metrics-data-root data/CIFAR10 --metrics-samples 1280 --metrics-feature-space inception_v3 --metrics-feature-batch-size 64 --metrics-feature-device cuda --metrics-bootstrap-samples 100 --metrics-bootstrap-seed 10 --metrics-bootstrap-alpha 0.05 --cuda --verbose
+
+Pipeline finished successfully.

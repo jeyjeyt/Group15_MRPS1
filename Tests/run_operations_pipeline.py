@@ -279,6 +279,17 @@ def _stylegan2_checkpoint_args(args):
         str(args.test_num_samples),
     ]
 
+def _stylegan2_cifar10_checkpoint_args(args):
+    checkpoint = args.stylegan2_test_checkpoint or str(
+        Path(args.checkpoints_root) / "StyleGAN" / "CIFAR10" / "stylegan2_generator.pkl"
+    )
+    return [
+        "--checkpoint",
+        checkpoint,
+        "--num-samples",
+        str(args.test_num_samples),
+    ]
+
 
 TEST_STEP_SPECS: dict[str, dict[str, object]] = {
     "test_dcgan_cifar10": {
@@ -329,6 +340,13 @@ TEST_STEP_SPECS: dict[str, dict[str, object]] = {
         "metrics_dataset": "celeba",
         "metrics_data_root": "CelebA",
         "arg_builder": _stylegan2_checkpoint_args,
+    },
+    "test_stylegan2_cifar10": {
+        "script_name": "test_stylegan2_cifar10.py",
+        "out_dir_name": "stylegan2_cifar10_test",
+        "metrics_dataset": "cifar10",
+        "metrics_data_root": "CIFAR10",
+        "arg_builder": _stylegan2_cifar10_checkpoint_args,
     },
 }
 
@@ -414,6 +432,9 @@ def step_test_ddpm_cifar10(args: argparse.Namespace):
 
 def step_test_stylegan2_celeba(args: argparse.Namespace):
     return _build_test_step_command(args, "test_stylegan2_celeba")
+
+def step_test_stylegan2_cifar10(args: argparse.Namespace):
+    return _build_test_step_command(args, "test_stylegan2_cifar10")
 
 
 def append_subset_args(cmd: list[str], args: argparse.Namespace):
@@ -560,6 +581,7 @@ STEP_BUILDERS: dict[str, StepBuilder] = {
     "test_studiogan_cifar10": step_test_studiogan_cifar10,
     "test_ddpm_cifar10": step_test_ddpm_cifar10,
     "test_stylegan2_celeba": step_test_stylegan2_celeba,
+    "test_stylegan2_cifar10": step_test_stylegan2_cifar10,
     "smoke_models": step_smoke_models,
 }
 
