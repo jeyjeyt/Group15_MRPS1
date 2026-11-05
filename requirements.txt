@@ -2,7 +2,7 @@ torch
 torchvision
 numpy
 pandas
-scipy
+scipy< 1.15
 scikit-learn
 clean-fid
 matplotlib

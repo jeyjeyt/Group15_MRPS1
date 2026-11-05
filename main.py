@@ -42,7 +42,7 @@ PROFILE = "test"  # Which pipeline profile to run when CUSTOM_STEPS is empty.
 
 # optional custom ordered steps. If non-empty, this overrides PROFILE.
 # example: ["prep_mnist_cifar10", "train_dcgan_cifar10", "smoke_models"]
-CUSTOM_STEPS = ["prep_mnist_cifar10"]  # Exact step list override; non-empty ignores PROFILE.
+CUSTOM_STEPS = ["test_dcgan_cifar10"]  # Exact step list override; non-empty ignores PROFILE.
 
 
 # execution behavior flags:
@@ -108,7 +108,7 @@ PERTURB_MEMO_FRACTION = 0.1  # Fraction of fake samples to replace with real sam
 PERTURB_MEMO_SEED = 10  # RNG seed for memoisation sample selection.
 
 # class-removal perturbation:
-PERTURB_CLASS_REMOVAL = True  # Enables class-removal perturbation (simulate mode dropping).
+PERTURB_CLASS_REMOVAL = False  # Enables class-removal perturbation (simulate mode dropping).
 PERTURB_CLASS_REMOVAL_STRATEGY = "label"  # Selection strategy: "label" or "kmeans".
 PERTURB_CLASS_REMOVAL_TARGETS = "Smiling"  # Target labels/clusters to remove (comma-separated).
 PERTURB_CLASS_REMOVAL_KMEANS_K = 8  # Number of clusters when strategy="kmeans".
@@ -147,7 +147,7 @@ PERTURB_DOMAIN_SHIFT_DATA_ROOT = ""  # Domain-shift dataset root path.
 PERTURB_DOMAIN_SHIFT_IMAGE_SIZE = 0  # Override image size for domain-shift reference (0 keeps default).
 
 # optional explicit checkpoint overrides for model test scripts
-DCGAN_TEST_NETG = ""  # Optional explicit DCGAN generator checkpoint path.
+DCGAN_TEST_NETG = "Models/saved_weights/netG_best.pth"  # Optional explicit DCGAN generator checkpoint path.
 WGANGP_TEST_GENERATOR = ""  # Optional explicit WGAN-GP generator checkpoint path.
 WGANGP_TEST_CRITIC = ""  # Optional explicit WGAN-GP critic checkpoint path.
 STUDIOGAN_TEST_CHECKPOINT = ""  # Optional explicit StudioGAN checkpoint path.
@@ -211,6 +211,7 @@ EXPERIMENTS: list[dict[str, Any]] = build_experiments_for_suite(
     dcgan_mnist_pretrained_netg=DCGAN_MNIST_PRETRAINED_NETG,
     experiment_base_overrides=EXPERIMENT_BASE_OVERRIDES,
 )
+EXPERIMENTS = [] # M1.2: single-run mode
 
 
 
